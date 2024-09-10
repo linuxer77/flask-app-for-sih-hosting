@@ -1,10 +1,7 @@
-import os
-import json
-import requests
 from groq import Groq
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from app import app
-from serpapi import GoogleSearch
+import serpapi
 
 @app.route('/search', methods=['POST'])
 def search():
@@ -81,6 +78,6 @@ def search():
         "api_key": "94d60742b92907667abcf9ebb2682c70c3c89bd7f974054e1e3a614b5d40dbd9" 
     }
 
-    search = GoogleSearch(params)
+    search = serpapi.search(params)
     results = search.get_dict()
     return jsonify(results)
