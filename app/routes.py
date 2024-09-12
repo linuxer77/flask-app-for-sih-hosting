@@ -91,7 +91,7 @@ def search():
         search_results = serpapi.search(params)
         
         # Convert search_results to a JSON-serializable dictionary
-        results_dict = search_results.get("results", {})  # Adjust this based on actual structure
+        results_dict = search_results.get("properties", {})  # Adjust this based on actual structure
         
         return jsonify(results_dict)
     except Exception as e:
