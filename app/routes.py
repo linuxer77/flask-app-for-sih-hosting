@@ -6,6 +6,8 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 from app import app
 import serpapi
 
+os.environ["GROQ_API_KEY"] = "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"
+
 @app.route('/search', methods=['POST'])
 def search():
     # Retrieve the API key from environment variables
@@ -86,5 +88,8 @@ def search():
     }
 
     search = serpapi.search(params)
-    results = search.get_dict()
-    return jsonify(results)
+    try:
+        results = search.get_dict() 
+        return jsonify(results)
+    except Exception as e:
+        return jsonify({"error", str(e)}), 500
