@@ -86,10 +86,6 @@ def search():
         "hl": f"{get_all_info()[:2]}",       # Language in the 2-letter form
         "api_key": "d4a50cc1768da925957ea7486ee2e44b22d18527b431bf1551887cf0c7d36ff4"        # Replace with your actual SerpAPI key
     }
-    try:   
-        search = GoogleSearch(params)
-        results = search.get_dict()    
-        return jsonify(results)
-    except Exception as e:
-        app.logger.error(f"An error occurred: {str(e)}")
-        return jsonify({"error": "Internal Server Error"}), 500
+    search = GoogleSearch(params)
+    results = search.get_dict()    
+    return jsonify(results)
