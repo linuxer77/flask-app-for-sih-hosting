@@ -87,8 +87,13 @@ def search():
         "api_key": "d4a50cc1768da925957ea7486ee2e44b22d18527b431bf1551887cf0c7d36ff4"        # Replace with your actual SerpAPI key
     }
     try:
+            # Perform the search
         search_results = serpapi.search(params)
-        return jsonify(search_results)
+        
+        # Convert search_results to a JSON-serializable dictionary
+        results_dict = search_results.get("results", {})  # Adjust this based on actual structure
+        
+        return jsonify(results_dict)
     except Exception as e:
         app.logger.error(f"An error occurred: {str(e)}")
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": "Internal Server Error"}), 500
