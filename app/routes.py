@@ -84,12 +84,11 @@ def search():
         "currency": f"{get_all_info()[6:]}",  # Currency of the country
         "gl": f"{get_all_info()[3:5]}",      # Country in the 2-letter form
         "hl": f"{get_all_info()[:2]}",       # Language in the 2-letter form
-        "api_key": "94d60742b92907667abcf9ebb2682c70c3c89bd7f974054e1e3a614b5d40dbd9"        # Replace with your actual SerpAPI key
+        "api_key": "d4a50cc1768da925957ea7486ee2e44b22d18527b431bf1551887cf0c7d36ff4"        # Replace with your actual SerpAPI key
     }
-
-    search = serpapi.search(params)
     try:
-        results = search.get_dict() 
-        return jsonify(results)
+        search_results = serpapi.search(params)
+        return jsonify(search_results)
     except Exception as e:
-        return jsonify({"error", str(e)}), 500
+        app.logger.error(f"An error occurred: {str(e)}")
+        return jsonify({"error": str(e)}), 500
