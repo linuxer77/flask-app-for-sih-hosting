@@ -4,7 +4,7 @@ import requests
 from groq import Groq
 from flask import Flask, render_template, jsonify, request, redirect, url_for
 from app import app
-import serpapi
+from serpapi import GoogleSearch
 
 os.environ["GROQ_API_KEY"] = "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"
 
@@ -86,14 +86,10 @@ def search():
         "hl": f"{get_all_info()[:2]}",       # Language in the 2-letter form
         "api_key": "d4a50cc1768da925957ea7486ee2e44b22d18527b431bf1551887cf0c7d36ff4"        # Replace with your actual SerpAPI key
     }
-    try:
-            # Perform the search
-        search_results = serpapi.search(params)
-        
-        # Convert search_results to a JSON-serializable dictionary
-        results_dict = search_results.get("properties", {})  # Adjust this based on actual structure
-        
-        return jsonify(results_dict)
+    try:   
+        search = GoogleSearch(params)
+        results = search.get_dict()    
+        return jsonify(results)
     except Exception as e:
         app.logger.error(f"An error occurred: {str(e)}")
         return jsonify({"error": "Internal Server Error"}), 500
