@@ -79,12 +79,12 @@ def search():
         "engine": "google_hotels",
         "q": f"{translated_query}",
         "check_in_date": "2024-09-18",
-        "check_out_date": "2024-09-28",
+        "check_out_date": "2024-09-20",
         "adults": "1",
         "currency": f"{get_all_info()[6:]}",  # Currency of the country
         "gl": f"{get_all_info()[3:5]}",      # Country in the 2-letter form
         "hl": f"{get_all_info()[:2]}",       # Language in the 2-letter form
-        "api_key": "your_serpapi_key"        # Replace with your actual SerpAPI key
+        "api_key": "94d60742b92907667abcf9ebb2682c70c3c89bd7f974054e1e3a614b5d40dbd9"        # Replace with your actual SerpAPI key
     }
 
     search = serpapi.search(params)
