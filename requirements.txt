@@ -4,3 +4,4 @@ serpapi
 groq
 requests
 flask-cors
+python-dotenv
