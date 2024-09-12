@@ -3,3 +3,4 @@ flask-dotenv
 serpapi
 groq
 requests
+flask-cors
